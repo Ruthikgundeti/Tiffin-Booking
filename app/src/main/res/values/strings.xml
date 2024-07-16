@@ -1,3 +1,86 @@
 <resources>
     <string name="app_name">Tiffin Booking</string>
+    <string name="idli">Idli is a staple breakfast in South India and SriLanka. It is a comfort food for most South Indians.
+        It is one of the South Indian delicacies that is popular and enjoyed by people throughout India.
+        Idlis are made in two popular ways : using parboiled rice and using idli (rice) rava.
+        The first method is traditionally followed by in Tamilnadu and Kerala while the second method is
+        followed in Andhra Pradesh and Karnataka. Here I will be sharing the one with parboiled rice.
+        These soft, spongy and savory rice cakes are made by making a batter of rice and black lentils,
+        fermenting the batter and steaming it in special idli moulds. It is also served in weddings or
+        other special occasions with sambhar, medhu vadai, chutney or idli milagai podi.
+        It also goes very well with non veg gravies like chicken curry, egg curry etc and veg kurmas.
+        Due to its soft texture it is given to kids as early as 6 months. Since it is steamed,
+        it is healthy and gets easily digested. So it is also commonly given to ailing patients and old people.</string>
+    <string name="chapatti">
+        Chapati is a staple everyday food throughout Northern India, Pakistan, Nepal and Bangladesh.
+        It is a very healthy dish prepared using whole wheat flour. Traditionally,
+        the wheat berry is stone ground at home using a chakki. These days, flour is prepared in bulk in
+        flour mills. There are also many brands of ready made wheat flour available, also known as Atta.
+        The preparation of chapatti starts by making a soft dough with atta and water. After resting the
+        dough for few minutes, small portion of the dough is pinched out and rolled out using a rolling pin.
+        In fact, our ancestors were very experienced in rolling out the rotis between two palms.
+        It is then grilled till both sides are cooked. In some places, the partially cooked rotis are
+        cooked directly over open flame. The chapatis bloom out like balloon and makes the final product
+        very soft.
+    </string>
+    <string name="poori">
+        Poori is a deep fried bread very famous throughout India. It is usually served with a potato
+        side-dish and is commonly referred to as Poori Kilangu or Aloo Puri or Puri Bhaji. It is also
+        served with sooji halwa (Halwa Puri), Kurma, Channa Masala, Shrikhand, Basundi and Aamras
+        (Mango Pulp).In our house it is a common brunch on relaxed weekends.
+        Kids love to have these puffed bread. It is also made for many special occasions,
+        ceremonies and festivals.Generally puri refers to the bread made with whole wheat flour.
+        However it is also made with maida (all purpose flour) and with rava (semolina).
+        The former is known as "Bhatura" and the later is called "Golgappa puri or Pani Pori".
+        I will be sharing the recipes in detail in separate posts.
+    </string>
+    <string name="rice">
+        Ari Pathiri or Ari Pathil is a flat bread made with raw rice flour. It is a specialty of the
+        muslims from the Malabar region in Kerala. These rice rotis are very soft and thin, hence it is
+        also called Ari Nice Pathiri. It is usually served in Kerala with some spicy non-veg curry.
+        Actually rotis made of rice flour is enjoyed in many Indian states. It is known as Rice Roti or
+        Tandalachi Bhakri in Goa and Maharashtra. In Gujarat, it is known as Chokha na Rotla and in Bangalore
+        and Mysore it is referred to as Akki Roti. Chaawal ki roti is also made by the Biharis and
+        enjoyed with some sabzi. It is also made in Bangladesh known as Ruti Pitha or Chaler Pitha.
+        In all the places, the process of making these rotis is the same. It requires a little practice
+        to make these but they are so tasty. So I encourage everyone to do try it. It is a good
+        variation to making regular rotis. The white color of the rotis are very eye appealing. Be sure
+        to try out and enjoy with any side dish of your choice.
+    </string>
+    <string name="pasta">
+        I have got so many requests to share a pasta recipe with Indian spices.
+        Pasta, as we all know originated in Italy. It has been found in Indian super markets for
+        more than a decade now. During my college days, my brother and I used to just boil the pasta
+        and mix it up with left over chicken curry. With a little additional salt and chili powder,
+        it used to taste fantastic. So I was confident that pasta blends very well with Indian spices.
+        I prefer making this Masala Pasta at home because I feel the pasta dishes served in restaurants
+        with tomato sauce are too bland for my taste buds. Whenever I go to restaurants, I like to order
+        Pasta with white sauce instead. This recipe of Indian style pasta is made with the basic Indian
+        masala – onion tomato masala. You can jazz it up by adding vegetables or meat of your choice.
+        Kids sometimes love plain pasta, so this is perfect. So try out the spicy masala pasta and enjoy.
+    </string>
+    <string name="parotta">
+        Parotta (also known as Barotta) is a delicacy popular in the states of Kerala and Tamil Nadu.
+        It is sold in street shops as well as in big restaurants. It\'s a pretty sight to watch the
+        street side parotta masters (that\'s how they are called) making parotta. They do it with such
+        high speed and precision. Wow!!
+        Parotta is made with all purpose flour or maida. The process starts by preparing a soft dough
+        with a good amount of fat. In street side shops, vanaspati dalda is the fat used. It makes the
+        parottas soft and flaky but at the same time unhealthy. At home you can make it a lot healthier
+        by using any refined flavorless oil or ghee or butter instead. Some people like to add an egg while
+        preparing the dough which also add little fat. The dough is coated with oil and needs to rest for
+        sometime after each step to make it pliable and soft. This is a key step which should not be
+        neglected. In shops, the parotta dough is prepared in the afternoon and is allowed to rest in an
+        oily surface till evening. The dough is also coated generously with oil and covered with a damp
+        towel to keep it moist.
+    </string>
+    <string name="paneer_parotta">
+        Paneer Paratha is another variety of stuffed parathas, which is a favorite among kids. The Indian variety of cottage cheese called paneer is stuffed within whole wheat Indian bread or roti. It tastes great with some pickle or can be enjoyed plain.
+        Traditionally fresh paneer was made fresh at home which gives the best taste. To make things easier, you can use store bought paneer. If you grate paneer and make the dough ahead of time, these parathas can be made in a jiffy.
+        The Paneer paratha is flavored with some salt, chaat masala and cumin powder. You can also make a sweet version of the parathas by mixing the crumbled cheese with some sugar and cardamom powder. It is a great option for kids lunch box or dinner.
+    </string>
+    <string name="rava_dosa">
+            whenever we would go to a restaurant, our common dish for ordering was Rawa Dosa. Whitish dosa with crispy corners and the choicest tempering served with onion chutney would just make me drool and I would finish it in a jiffy.
+            Back then, I thought it was very tough to prepare, which is why we always eat it in restaurants. Years later, when I got married, my mother came to know that the same Rava dosai was my husband’s favorite. And like a dutiful mother-in-law, my mom would diligently make rawa dosas for him with 3 different kinds of chutneys, each time we visit my mom’s house. Only then I realized that Rawa dosa is actually very easy to make; can be prepared any time and the best part is it does not require any fermentation. It is apt for jiffy tiffin making. Try it for your dinner or as Saturday evening snack, it is assured that you and your family will love it.
+    </string>
 </resources>
