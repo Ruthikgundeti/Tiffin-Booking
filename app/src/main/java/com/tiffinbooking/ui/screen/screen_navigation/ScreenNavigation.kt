@@ -7,7 +7,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tiffinbooking.ui.extension.checkNull
 import com.tiffinbooking.ui.localdatabase.TiffinDatabase
+import com.tiffinbooking.ui.screen.aboutUs.AboutUsScreen
 import com.tiffinbooking.ui.screen.booking.BookingScreen
+import com.tiffinbooking.ui.screen.location.LocationScreen
+import com.tiffinbooking.ui.screen.mealPlans.MealPlansScreen
+import com.tiffinbooking.ui.screen.myOrders.MyOrders
+import com.tiffinbooking.ui.screen.review.ReviewScreen
+import com.tiffinbooking.ui.screen.support.SupportScreen
 import com.tiffinbooking.ui.screen.tiffin_detail.TiffinDetailScreen
 import com.tiffinbooking.ui.screen.tiffin_list.TiffinListing
 import com.tiffinbooking.ui.screen.user_login.UserLoginScreen
@@ -35,21 +41,48 @@ fun ScreenNavigation() {
         composable(route = "TiffinListing") {
             TiffinListing(navController = navController,tiffinDatabase)
         }
-        composable(route = "Booking") {
-            BookingScreen(navController = navController)
+        composable(route = "AboutUsScreen") {
+            AboutUsScreen(navController = navController)
         }
-        composable(route = "TiffinDetail"+"/{image}"+"/{name}"+"/{price}"+"/{detail}") {
+        composable(route = "ReviewScreen") {
+            ReviewScreen(navController = navController)
+        }
+        composable(route = "LocationScreen") {
+            LocationScreen(navController = navController)
+        }
+        composable(route = "SupportScreen") {
+            SupportScreen(navController = navController)
+        }
+        composable(route = "MealPlansScreen") {
+            MealPlansScreen(navController = navController)
+        }
+        composable(route = "MyOrders") {
+            MyOrders(navController = navController)
+        }
+        composable(route = "Booking"+"/{image}"+"/{name}"+"/{standard}"+"/{mini}"+"/{type}") {
+            val image = it.arguments?.getString("image").toString().toInt()
+            val name = it.arguments?.getString("name").toString()
+            val standard = it.arguments?.getString("standard").toString()
+            val mini = it.arguments?.getString("mini").toString()
+            val type = it.arguments?.getString("type").toString()
+            BookingScreen(navController = navController,image=image,name = name,standard = standard,mini = mini,type = type)
+        }
+        composable(route = "TiffinDetail"+"/{image}"+"/{name}"+"/{standard}"+"/{mini}"+"/{detail}"+"/{type}") {
             val name = it.arguments?.getString("name").toString()
             val image = it.arguments?.getString("image").toString().toInt()
-            val price = it.arguments?.getString("price").toString()
+            val standard = it.arguments?.getString("standard").toString()
+            val mini = it.arguments?.getString("mini").toString()
             val detail = it.arguments?.getString("detail").toString()
-            if (checkNull(name) && checkNull(price) && checkNull(detail)) {
+            val type = it.arguments?.getString("type").toString()
+            if (checkNull(name) && checkNull(standard) && checkNull(mini) && checkNull(detail)&& checkNull(type)) {
                 TiffinDetailScreen(
                     navController = navController,
                     name = name,
                     image = image,
-                    price = price,
-                    detail = detail
+                    standard = standard,
+                    mini = mini,
+                    detail = detail,
+                    type = type
                 )
             }
         }

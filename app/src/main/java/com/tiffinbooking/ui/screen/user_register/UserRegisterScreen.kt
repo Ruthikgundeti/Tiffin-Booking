@@ -6,8 +6,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -16,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -26,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
 import androidx.navigation.NavController
 import com.tiffinbooking.R
 import com.tiffinbooking.ui.localdatabase.TiffinDatabase
@@ -44,21 +53,60 @@ import com.tiffinbooking.ui.theme.white
 fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    var userName by remember { mutableStateOf("") }
+    val scrollState = rememberScrollState()
+    val cityScroll = rememberScrollState()
+
+    var isShowCity by rememberSaveable { mutableStateOf(false) }
+    val cityList =
+        listOf(
+            "London",
+            "Birmingham",
+            "Manchester",
+            "Liverpool",
+            "Leeds",
+            "Sheffield",
+            "Teesside",
+            "Bristo"
+        )
+
+    val icon = if (isShowCity)
+        Icons.Filled.KeyboardArrowUp
+    else
+        Icons.Filled.KeyboardArrowDown
+
+    val choiceList = arrayListOf<String>().apply {
+        clear()
+        add("Veg")
+        add("Non-Veg")
+    }
+    var choice by remember { mutableStateOf("") }
+
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var city by remember { mutableStateOf("") }
     var userEmailAddress by remember { mutableStateOf("") }
     var userPassword by remember { mutableStateOf("") }
     var userConfirmPassword by remember { mutableStateOf("") }
     var showProgress by remember { mutableStateOf(false) }
 
     fun validation():Boolean {
-        return if (!checkNull(userName.toString().trim())) {
-            context.showMessage("Please enter user name.")
+        return if (!checkNull(firstName.toString().trim())) {
+            context.showMessage("Please enter first name.")
+            false
+        }else if (!checkNull(lastName.toString().trim())) {
+            context.showMessage("Please enter last name.")
+            false
+        }else if (!checkNull(city.toString().trim())) {
+            context.showMessage("Please select city.")
             false
         }else if (!checkNull(userEmailAddress.toString().trim())) {
             context.showMessage("Please enter user email address.")
             false
         }else if (emailValidation(userEmailAddress.trim())) {
             context.showMessage("Please enter valid user email address.")
+            false
+        }else if (!checkNull(choice.toString().trim())) {
+            context.showMessage("Please select meal.")
             false
         }else if (!checkNull(userPassword.toString().trim())) {
             context.showMessage("Please enter user password.")
@@ -76,8 +124,10 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(scrollState)
                     .background(orange)
             ) {
+
                 Spacer(modifier = Modifier.height(20.dp))
                 Image(
                     painter = painterResource(id = R.drawable.tiffin),
@@ -86,6 +136,7 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                 )
+                Spacer(modifier = Modifier.height(20.dp))
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
@@ -97,7 +148,7 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                         Card(
                             modifier = Modifier,
                             shape = RoundedCornerShape(10.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color.White),
+                            colors = CardDefaults.cardColors(containerColor = white),
                             elevation = CardDefaults.cardElevation(5.dp),
                         ) {
                             Column(
@@ -113,13 +164,13 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                                 )
                                 Spacer(modifier = Modifier.height(20.dp))
                                 Text(
-                                    "Name",
+                                    "First Name",
                                     modifier = Modifier.fillMaxWidth(),
                                     style = TextStyle(color = Color.Black)
                                 )
 
                                 OutlinedTextField(
-                                    value = userName,
+                                    value = firstName,
                                     shape = RoundedCornerShape(10.dp),
                                     keyboardOptions = KeyboardOptions(
                                         keyboardType = KeyboardType.Text,
@@ -142,14 +193,131 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                                         }),
                                     placeholder = {
                                         Text(
-                                            "Enter user name",
+                                            "Enter first name",
                                             color = gray,
                                             fontSize = 16.sp
                                         )
                                     },
                                     onValueChange = {
-                                        userName = it
+                                        firstName = it
                                     })
+                                Spacer(modifier = Modifier.height(20.dp))
+                                Text(
+                                    "Last Name",
+                                    modifier = Modifier.fillMaxWidth(),
+                                    style = TextStyle(color = Color.Black)
+                                )
+
+                                OutlinedTextField(
+                                    value = lastName,
+                                    shape = RoundedCornerShape(10.dp),
+                                    keyboardOptions = KeyboardOptions(
+                                        keyboardType = KeyboardType.Text,
+                                        capitalization = KeyboardCapitalization.Sentences
+                                    ),
+                                    maxLines = 1,
+                                    singleLine = true,
+                                    keyboardActions = KeyboardActions(
+                                        onDone = { keyboardController?.hide() }),
+                                    textStyle = TextStyle(
+                                        fontSize = 16.sp,
+                                        color = Color.Black, fontWeight = FontWeight.Medium
+                                    ),
+                                    modifier = Modifier
+                                        .padding(vertical = 4.dp, horizontal = 0.dp)
+                                        .fillMaxWidth()
+                                        .focusable(false)
+                                        .clickable(onClick = {
+
+                                        }),
+                                    placeholder = {
+                                        Text(
+                                            "Enter last name",
+                                            color = gray,
+                                            fontSize = 16.sp
+                                        )
+                                    },
+                                    onValueChange = {
+                                        lastName = it
+                                    })
+                                Spacer(modifier = Modifier.height(20.dp))
+
+                                Text(
+                                    "City",
+                                    modifier = Modifier.fillMaxWidth(),
+                                    style = TextStyle(color = Color.Black)
+                                )
+                                OutlinedTextField(
+                                    value = if (city != "") city else "Select city",
+                                    onValueChange = { city = it },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable { isShowCity = !isShowCity },
+                                    enabled = false,
+                                    trailingIcon = {
+                                        Icon(
+                                            icon, "contentDescription", tint = Color.Black
+                                        )
+                                    },
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        focusedBorderColor = gray,
+                                        unfocusedBorderColor = gray,
+                                        disabledBorderColor = gray
+                                    ),
+                                    textStyle = TextStyle(color = Color.Black),
+                                    shape = RoundedCornerShape(10.dp),
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                ) {
+                                    if (isShowCity) {
+                                        Popup(
+                                            alignment = Alignment.TopCenter,
+                                            properties = PopupProperties(
+                                                excludeFromSystemGesture = true,
+                                            ),
+                                            onDismissRequest = { isShowCity = false }
+                                        ) {
+
+                                            Column(
+                                                modifier = Modifier
+                                                    .heightIn(max = 220.dp)
+                                                    .verticalScroll(state = cityScroll)
+                                                    .padding(10.dp)
+                                                    .border(width = 1.dp, color = Color.Gray),
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                            ) {
+
+                                                cityList.onEachIndexed { index, item ->
+                                                    if (index != 0) {
+                                                        Divider(
+                                                            thickness = 1.dp,
+                                                            color = Color.LightGray
+                                                        )
+                                                    }
+                                                    Box(
+                                                        modifier = Modifier
+                                                            .fillMaxWidth()
+                                                            .background(white)
+                                                            .padding(10.dp)
+                                                            .clickable {
+                                                                city = item
+                                                                isShowCity = !isShowCity
+                                                            },
+                                                        contentAlignment = Alignment.Center
+                                                    ) {
+                                                        Text(
+                                                            text = item,
+                                                            style = TextStyle(color = Color.Black)
+                                                        )
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
                                 Spacer(modifier = Modifier.height(20.dp))
                                 Text(
                                     "Email",
@@ -189,6 +357,40 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                                     onValueChange = {
                                         userEmailAddress = it
                                     })
+                                Spacer(modifier = Modifier.height(20.dp))
+                                Text(
+                                    text = "Choice of meal : ", color = Color.Black,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(10.dp),
+                                    style = TextStyle(color = Color.Black)
+                                )
+                                Column(
+                                    modifier = Modifier.padding(8.dp),
+                                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                                ) {
+                                    choiceList.forEach { name ->
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            RadioButton(
+                                                selected = (name == choice),
+                                                onClick = { choice = name },
+                                                colors = RadioButtonDefaults.colors(selectedColor = Color.Black)
+
+                                            )
+                                            Text(
+                                                text = name,
+                                                style = TextStyle(color = Color.Black),
+                                                color = Color.Black,
+                                                modifier = Modifier
+                                                    .padding(start = 8.dp)
+                                                    .clickable {
+                                                        choice = name
+                                                    }
+                                            )
+                                        }
+                                    }
+
+                                }
                                 Spacer(modifier = Modifier.height(20.dp))
                                 Text(
                                     "Password",
@@ -272,7 +474,7 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                                 Spacer(modifier = Modifier.height(20.dp))
                                 Button(
                                     modifier = Modifier.padding(vertical = 5.dp).fillMaxWidth(),
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent, contentColor = Color.White),
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent, contentColor = white),
                                     contentPadding = PaddingValues(),
                                     shape = RoundedCornerShape(30.dp),
                                     onClick = {
@@ -333,7 +535,7 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
                             .size(100.dp)
-                            .background(white, shape = RoundedCornerShape(8.dp))
+                            .background(Color.Black, shape = RoundedCornerShape(8.dp))
                     ) {
                         CircularProgressIndicator(color = orange)
                     }

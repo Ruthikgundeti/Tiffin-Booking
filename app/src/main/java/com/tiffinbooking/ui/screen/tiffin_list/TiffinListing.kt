@@ -9,7 +9,6 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -44,8 +43,10 @@ fun TiffinListing(navController: NavController, preference: TiffinDatabase) {
     val scaffoldState = rememberScaffoldState()
     var signOut by remember { mutableStateOf(false) }
     list.addAll(context.tiffinData())
+
     TiffinBookingTheme {
         androidx.compose.material.Scaffold(
+            scaffoldState = scaffoldState,
             topBar = {
                 Header(
                     navController = navController,
@@ -83,7 +84,115 @@ fun TiffinListing(navController: NavController, preference: TiffinDatabase) {
                         color = white,
                     )
                 }
-                Column {
+                Column (modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 10.dp)
+                    .background(color = white)){
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "Home page", color = Color.Black)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate("AboutUsScreen")
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "About us", color = Color.Black)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate("MealPlansScreen")
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "Meal Plans", color = Color.Black)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate("ReviewScreen")
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "why RUTHIK GUNDETI Tiffin", color = Color.Black)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate("MyOrders")
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "My Bookings", color = Color.Black)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate("LocationScreen")
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "Locations we serve", color = Color.Black)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate("SupportScreen")
+                            }
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        androidx.compose.material.Text(text = "Contact us", color = Color.Black)
+                    }
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -97,8 +206,9 @@ fun TiffinListing(navController: NavController, preference: TiffinDatabase) {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Spacer(modifier = Modifier.width(16.dp))
-                        androidx.compose.material.Text(text = "Logout", color = white)
+                        androidx.compose.material.Text(text = "Logout", color = Color.Black)
                     }
+
                 }
             },
             backgroundColor = orange,
@@ -123,7 +233,7 @@ fun TiffinListing(navController: NavController, preference: TiffinDatabase) {
                             .fillMaxWidth()
                             .height(300.dp)
                             .clickable {
-                                navController.navigate("TiffinDetail" + "/${model.image}" + "/${model.name}" + "/${model.price}" + "/${model.detail}")
+                                navController.navigate("TiffinDetail" + "/${model.image}" + "/${model.name}" + "/${model.priceStandard}" + "/${model.priceMini}" + "/${model.detail}"+ "/${model.type}")
                             },
                         shape = RoundedCornerShape(10.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -147,7 +257,14 @@ fun TiffinListing(navController: NavController, preference: TiffinDatabase) {
                                 .padding(vertical = 5.dp, horizontal = 10.dp)
                         )
                         Text(
-                            "${model.price}",
+                            model.getStandardPrice(),
+                            fontSize = 14.sp,
+                            color = Color.Black,
+                            modifier = Modifier
+                                .padding(vertical = 5.dp, horizontal = 10.dp)
+                        )
+                        Text(
+                            model.getMiniPrice(),
                             fontSize = 14.sp,
                             color = Color.Black,
                             modifier = Modifier

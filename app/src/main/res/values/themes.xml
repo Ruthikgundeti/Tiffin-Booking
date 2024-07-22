@@ -2,6 +2,11 @@
 <resources>
 
     <style name="Theme.TiffinBooking" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:colorPrimary">@color/orange</item>
+        <item name="android:colorPrimaryDark">@color/orange</item>
+        <item name="android:colorAccent">@color/orange</item>
+        <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/orange</item>
     </style>
 </resources>

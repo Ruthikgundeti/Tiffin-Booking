@@ -29,7 +29,7 @@ import com.tiffinbooking.ui.theme.white
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun TiffinDetailScreen(navController: NavController,name:String,image:Int,price:String,detail:String) {
+fun TiffinDetailScreen(navController: NavController,name:String,image:Int,standard:String,mini:String,detail:String,type:String) {
     val context = LocalContext.current
     val nestedScroll = rememberScrollState()
     TiffinBookingTheme {
@@ -95,15 +95,28 @@ fun TiffinDetailScreen(navController: NavController,name:String,image:Int,price:
                             .padding(vertical = 5.dp, horizontal = 10.dp)
                     )
                     Text(
-                        price,
+                        type,
                         fontSize = 14.sp,
                         color = Color.Black,
                         modifier = Modifier
                             .padding(vertical = 5.dp, horizontal = 10.dp)
                     )
-
                     Text(
-                        "Item Detail",
+                        "Price per meal (Standard): $standard Gbp",
+                        fontSize = 14.sp,
+                        color = Color.Black,
+                        modifier = Modifier
+                            .padding(vertical = 5.dp, horizontal = 10.dp)
+                    )
+                    Text(
+                        "Price per meal (Mini): $mini Gbp",
+                        fontSize = 14.sp,
+                        color = Color.Black,
+                        modifier = Modifier
+                            .padding(vertical = 5.dp, horizontal = 10.dp)
+                    )
+                    Text(
+                        "Item Detail :",
                         fontSize = 14.sp,
                         color = Color.Black,
                         modifier = Modifier
@@ -122,7 +135,7 @@ fun TiffinDetailScreen(navController: NavController,name:String,image:Int,price:
                         contentPadding = PaddingValues(),
                         shape = RoundedCornerShape(30.dp),
                         onClick = {
-                           navController.navigate("Booking")
+                           navController.navigate("Booking"+ "/${image}"+ "/${name}"+ "/${standard}" + "/${mini}"+ "/${type}")
                         },
                     ) {
                         Box(
@@ -130,7 +143,7 @@ fun TiffinDetailScreen(navController: NavController,name:String,image:Int,price:
                             contentAlignment = Alignment.Center,
                         ) {
                             Text(
-                                text = "Book Tiffin",
+                                text = "Place Order",
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 modifier = Modifier.padding(10.dp))
