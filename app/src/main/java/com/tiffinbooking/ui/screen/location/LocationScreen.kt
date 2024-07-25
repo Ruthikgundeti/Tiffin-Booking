@@ -92,13 +92,7 @@ fun LocationScreen(navController: NavController) {
                             .fillMaxWidth(),
                         style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 18.sp)
                     )
-                    Text(
-                        text = "⦁ Birmingham",
-                        color = Color.Black,
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 18.sp)
-                    )
+                    
                     Text(
                         text = "⦁ Manchester",
                         color = Color.Black,
@@ -115,6 +109,13 @@ fun LocationScreen(navController: NavController) {
                     )
                     Text(
                         text = "⦁ Leeds",
+                        color = Color.Black,
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 18.sp)
+                    )
+			Text(
+                        text = "⦁ Birmingham",
                         color = Color.Black,
                         modifier = Modifier
                             .fillMaxWidth(),

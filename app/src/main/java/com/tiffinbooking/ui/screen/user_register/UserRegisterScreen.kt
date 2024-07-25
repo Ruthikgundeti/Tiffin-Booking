@@ -66,7 +66,9 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
             "Leeds",
             "Sheffield",
             "Teesside",
-            "Bristo"
+            "Bristo",
+
+	    "Any Other"
         )
 
     val icon = if (isShowCity)

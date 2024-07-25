@@ -31,7 +31,7 @@ fun Header(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    if (currentRoute == null || currentRoute == "UserLogin") {
+    if (currentRoute == null || currentRoute == "User Login") {
         return
     }
 
