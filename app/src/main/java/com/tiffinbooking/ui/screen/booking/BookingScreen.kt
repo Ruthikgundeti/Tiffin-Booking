@@ -56,8 +56,7 @@ fun BookingScreen(
 
     val mealTimeList = arrayListOf<String>().apply {
         clear()
-        add("breakfast")
-	add("Lunch")
+        add("Lunch")
         add("Dinner")
         add("Both")
     }
@@ -65,7 +64,7 @@ fun BookingScreen(
 
     val mealTypeList = arrayListOf<String>().apply {
         clear()
-        add("Pure-Veg")
+        add("Veg")
         add("Non-Veg")
     }
     var mealType by remember { mutableStateOf("") }
@@ -81,7 +80,6 @@ fun BookingScreen(
         clear()
         add("3 Days")
         add("1 week")
-	add("2 week")
         add("1 month")
         add("3 months")
     }

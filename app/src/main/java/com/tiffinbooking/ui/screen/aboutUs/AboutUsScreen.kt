@@ -90,7 +90,7 @@ fun AboutUsScreen(navController: NavController) {
                         color = Color.Black,
                         modifier = Modifier
                             .fillMaxWidth(),
-                        style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 18.sp)
+                        style = TextStyle(fontSize = 18.sp)
                     )
                 }
             }

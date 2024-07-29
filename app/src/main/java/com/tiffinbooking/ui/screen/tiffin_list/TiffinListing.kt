@@ -146,7 +146,7 @@ fun TiffinListing(navController: NavController, preference: TiffinDatabase) {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Spacer(modifier = Modifier.width(16.dp))
-                        androidx.compose.material.Text(text = "why RUTHIK GUNDETI Tiffin", color = Color.Black)
+                        androidx.compose.material.Text(text = "Why ruthik gundeti tiffin", color = Color.Black)
                     }
                     Row(
                         modifier = Modifier

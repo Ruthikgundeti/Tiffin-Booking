@@ -33,13 +33,13 @@ fun Context.showMessage(message:String) {
 fun Context.tiffinData() : ArrayList<DataModel> {
     val list = ArrayList<DataModel>()
     list.apply {
-        add(DataModel(type = "Pure Veg", image = R.drawable.ic_idli,name = "Idli", detail = getString(R.string.idli), priceStandard = 150, priceMini = 140))
-        add(DataModel(type = "Pure Veg", image = R.drawable.ic_chapatti,name = "Chapatti", detail = getString(R.string.chapatti), priceStandard = 140, priceMini = 130))
-        add(DataModel(type = "Pure Veg", image = R.drawable.ic_poori,name = "Poori", detail = getString(R.string.poori), priceStandard = 140, priceMini = 130))
-        add(DataModel(type = "Pure Veg", image = R.drawable.ic_rice,name = "Rice Roti", detail = getString(R.string.rice), priceStandard = 130, priceMini = 120))
-        add(DataModel(type = "Pure Veg", image = R.drawable.ic_pasta,name = "Pasta", detail = getString(R.string.pasta), priceStandard = 150, priceMini = 140))
-        add(DataModel(type = "Pure Veg", image = R.drawable.parotta,name = "Parotta", detail = getString(R.string.parotta), priceStandard = 100, priceMini = 90))
-        add(DataModel(type = "Pure Veg", image = R.drawable.ic_rava,name = "Rava Dosa", detail = getString(R.string.rava_dosa), priceStandard = 160, priceMini = 150))
+        add(DataModel(type = "Veg", image = R.drawable.ic_idli,name = "Idli", detail = getString(R.string.idli), priceStandard = 150, priceMini = 140))
+        add(DataModel(type = "Veg", image = R.drawable.ic_chapatti,name = "Chapatti", detail = getString(R.string.chapatti), priceStandard = 140, priceMini = 130))
+        add(DataModel(type = "Veg", image = R.drawable.ic_poori,name = "Poori", detail = getString(R.string.poori), priceStandard = 140, priceMini = 130))
+        add(DataModel(type = "Veg", image = R.drawable.ic_rice,name = "Rice Roti", detail = getString(R.string.rice), priceStandard = 130, priceMini = 120))
+        add(DataModel(type = "Veg", image = R.drawable.ic_pasta,name = "Pasta", detail = getString(R.string.pasta), priceStandard = 150, priceMini = 140))
+        add(DataModel(type = "Veg", image = R.drawable.parotta,name = "Parotta", detail = getString(R.string.parotta), priceStandard = 100, priceMini = 90))
+        add(DataModel(type = "Veg", image = R.drawable.ic_rava,name = "Rava Dosa", detail = getString(R.string.rava_dosa), priceStandard = 160, priceMini = 150))
     }
     return list
 }

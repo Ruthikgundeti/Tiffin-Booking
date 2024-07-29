@@ -49,6 +49,7 @@ fun UserLoginScreen(navController: NavController,preference:TiffinDatabase) {
     var userEmailAddress by remember { mutableStateOf("") }
     var userPassword by remember { mutableStateOf("") }
     var showProgress by remember { mutableStateOf(false) }
+    var loggedIn by remember { mutableStateOf(false) }
     fun validation():Boolean {
         return if (!checkNull(userEmailAddress.toString().trim())) {
             context.showMessage("Please enter user email address.")
@@ -190,12 +191,8 @@ fun UserLoginScreen(navController: NavController,preference:TiffinDatabase) {
                                     shape = RoundedCornerShape(30.dp),
                                     onClick = {
                                         if(validation()) {
-                                            preference.isLogin = true
-                                            navController.navigate("TiffinListing") {
-                                                popUpTo("UserLogin") {
-                                                    inclusive = true
-                                                }
-                                            }
+                                            loggedIn = true
+
                                         }
                                     },
                                 ) {
@@ -251,6 +248,56 @@ fun UserLoginScreen(navController: NavController,preference:TiffinDatabase) {
                         CircularProgressIndicator(color = orange)
                     }
                 }
+            }
+            if (loggedIn) {
+                AlertDialog(
+                    onDismissRequest = {
+                        loggedIn = false
+                    },
+                    title = { Text(stringResource(id = R.string.app_name)) },
+                    text = { Text("You have logged in successfully.") },
+                    confirmButton = {
+                        Button(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = Color.White
+                            ),
+                            contentPadding = PaddingValues(),
+                            shape = RoundedCornerShape(30.dp),
+                            onClick = {
+                                preference.isLogin = true
+                                navController.navigate("TiffinListing") {
+                                    popUpTo("UserLogin") {
+                                        inclusive = true
+                                    }
+                                }
+                                loggedIn = false
+                            },
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .background(orange)
+                                    .then(
+                                        Modifier
+                                            .padding(vertical = 5.dp)
+                                            .fillMaxWidth()
+                                    ),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text(
+                                    text = "Ok",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    },
+                    dismissButton = {}
+                )
             }
 
         }

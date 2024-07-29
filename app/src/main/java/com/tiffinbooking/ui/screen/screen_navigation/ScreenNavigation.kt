@@ -27,7 +27,7 @@ fun ScreenNavigation() {
     val tiffinDatabase = TiffinDatabase(context)
     NavHost(
         navController = navController,
-        startDestination = "UserSplash"
+        startDestination = "TiffinListing"
     ) {
         composable(route = "UserSplash") {
             SplashScreen(navController = navController,tiffinDatabase)

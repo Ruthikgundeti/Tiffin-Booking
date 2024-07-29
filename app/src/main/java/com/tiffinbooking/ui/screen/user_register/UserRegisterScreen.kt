@@ -66,9 +66,7 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
             "Leeds",
             "Sheffield",
             "Teesside",
-            "Bristo",
-
-	    "Any Other"
+            "Bristo"
         )
 
     val icon = if (isShowCity)
@@ -90,6 +88,7 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
     var userPassword by remember { mutableStateOf("") }
     var userConfirmPassword by remember { mutableStateOf("") }
     var showProgress by remember { mutableStateOf(false) }
+    var registered by remember { mutableStateOf(false) }
 
     fun validation():Boolean {
         return if (!checkNull(firstName.toString().trim())) {
@@ -481,12 +480,8 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                                     shape = RoundedCornerShape(30.dp),
                                     onClick = {
                                         if(validation()) {
-                                            preference.isLogin = true
-                                            navController.navigate("TiffinListing") {
-                                                popUpTo("UserRegister") {
-                                                    inclusive = true
-                                                }
-                                            }
+                                            registered = true
+
                                         }
                                     },
                                 ) {
@@ -542,6 +537,56 @@ fun UserRegisterScreen(navController: NavController,preference:TiffinDatabase) {
                         CircularProgressIndicator(color = orange)
                     }
                 }
+            }
+            if (registered) {
+                AlertDialog(
+                    onDismissRequest = {
+                        registered = false
+                    },
+                    title = { Text(stringResource(id = R.string.app_name)) },
+                    text = { Text("You have register successfully.") },
+                    confirmButton = {
+                        Button(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = Color.White
+                            ),
+                            contentPadding = PaddingValues(),
+                            shape = RoundedCornerShape(30.dp),
+                            onClick = {
+                                preference.isLogin = true
+                                navController.navigate("TiffinListing") {
+                                    popUpTo("UserRegister") {
+                                        inclusive = true
+                                    }
+                                }
+                                registered = false
+                            },
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .background(orange)
+                                    .then(
+                                        Modifier
+                                            .padding(vertical = 5.dp)
+                                            .fillMaxWidth()
+                                    ),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text(
+                                    text = "Ok",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    },
+                    dismissButton = {}
+                )
             }
 
         }
